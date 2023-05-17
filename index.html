@@ -71,17 +71,23 @@
       margin: 10px;
     }
 
-    .gallery-images {
+    .gallery-tiles {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    .gallery-images img {
+    .gallery-tile {
       width: 100%;
       max-width: 300px;
       height: auto;
       margin: 10px;
+      cursor: pointer;
+    }
+
+    .gallery-tile img {
+      width: 100%;
+      height: auto;
       object-fit: cover;
     }
 
@@ -96,12 +102,12 @@
       }
 
       .sermon-videos,
-      .gallery-images {
+      .gallery-tiles {
         justify-content: flex-start;
       }
 
       .sermon-videos iframe,
-      .gallery-images img {
+      .gallery-tiles img {
         max-width: 400px;
       }
     }
@@ -116,7 +122,6 @@
     <ul>
       <li><a href="#sermons">Sermons</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact Us</a></li>
     </ul>
   </nav>
 
@@ -139,16 +144,13 @@
     <div class="year-buttons">
       <button onclick="showGallery('2023')">2023</button>
       <button onclick="showGallery('2022')">2022</button>
-</div>
+    </div>
 
-<div class="gallery-images">
-  <!-- Images will be dynamically added here based on the selected year -->
-</div>
+    <div class="gallery-tiles">
+      <!-- Images will be dynamically added here based on the selected year -->
+    </div>
   </section>
-  <section id="contact">
-    <h2>Contact Us</h2>
-	<p>Add your contact information and form here.</p>
-  </section>
+
   <script>
     function showSermons(year) {
       // You can fetch and add the YouTube video links dynamically based on the selected year
@@ -161,9 +163,10 @@
       ];
 
       const sermons2022 = [
-        'https://www.youtube.com/watch?v=video4',
-        'https://www.youtube.com/watch?v=video5',
-        'https://www.youtube.com/watch?v=video6'
+        'https://www.youtube.com/watch?v=vP5xvYiN45s',
+        'https://www.youtube.com/watch?v=KScDN7punDE',
+        'https://www.youtube.com/watch?v=WW3iQ6di7hs',
+        'https://www.youtube.com/watch?v=S2IbMgpBJjg'
       ];
 
       const sermonVideosContainer = document.querySelector('.sermon-videos');
@@ -181,31 +184,12 @@
     }
 
     function showGallery(year) {
-      // You can fetch and add the gallery images dynamically based on the selected year
-      // For now, let's assume you have an array of image URLs for each year
+      // Redirect to the Google Photos album page based on the selected year
+      const galleryUrl = year === '2023'
+        ? 'https://photos.app.goo.gl/4thqTCqSF9k2nnkG6'
+        : 'https://photos.app.goo.gl/iLj2c81PnDhcAsSX9';
 
-      const gallery2023 = [
-        'image1.jpg',
-        'image2.jpg',
-        'image3.jpg'
-      ];
-
-      const gallery2022 = [
-        'image4.jpg',
-        'image5.jpg',
-        'image6.jpg'
-      ];
-
-      const galleryImagesContainer = document.querySelector('.gallery-images');
-      galleryImagesContainer.innerHTML = '';
-
-      const gallery = year === '2023' ? gallery2023 : gallery2022;
-
-      gallery.forEach(imageUrl => {
-        const image = document.createElement('img');
-        image.src = imageUrl;
-        galleryImagesContainer.appendChild(image);
-      });
+      window.location.href = galleryUrl;
     }
   </script>
 </body>
