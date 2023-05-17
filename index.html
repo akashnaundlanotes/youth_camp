@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Believers Youth Camp</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      color: #333;
+      padding: 10px;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    section {
+      margin: 20px;
+    }
+
+    .year-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .year-buttons button {
+      padding: 10px;
+      margin: 0 5px;
+    }
+
+    .sermon-videos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .sermon-videos iframe {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 10px;
+    }
+
+    .gallery-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery-images img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 10px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 768px) {
+      /* Styles for tablets and laptops */
+      .year-buttons {
+        justify-content: flex-start;
+      }
+
+      .year-buttons button {
+        margin: 0 10px;
+      }
+
+      .sermon-videos,
+      .gallery-images {
+        justify-content: flex-start;
+      }
+
+      .sermon-videos iframe,
+      .gallery-images img {
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Believers Youth Camp</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#sermons">Sermons</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <section id="sermons">
+    <h2>Sermons</h2>
+
+    <div class="year-buttons">
+      <button onclick="showSermons('2023')">2023</button>
+      <button onclick="showSermons('2022')">2022</button>
+    </div>
+
+    <div class="sermon-videos">
+      <!-- Videos will be dynamically added here based on the selected year -->
+    </div>
+  </section>
+
+  <section id="gallery" style="display: none;">
+    <h2>Gallery</h2>
+
+    <div class="year-buttons">
+      <button onclick="showGallery('2023')">2023</button>
+      <button onclick="showGallery('2022')">2022</button>
+</div>
+
+<div class="gallery-images">
+  <!-- Images will be dynamically added here based on the selected year -->
+</div>
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+	<p>Add your contact information and form here.</p>
+  </section>
+  <script>
+    function showSermons(year) {
+      // You can fetch and add the YouTube video links dynamically based on the selected year
+      // For now, let's assume you have an array of video URLs for each year
+
+      const sermons2023 = [
+        'https://www.youtube.com/watch?v=video1',
+        'https://www.youtube.com/watch?v=video2',
+        'https://www.youtube.com/watch?v=video3'
+      ];
+
+      const sermons2022 = [
+        'https://www.youtube.com/watch?v=video4',
+        'https://www.youtube.com/watch?v=video5',
+        'https://www.youtube.com/watch?v=video6'
+      ];
+
+      const sermonVideosContainer = document.querySelector('.sermon-videos');
+      sermonVideosContainer.innerHTML = '';
+
+      const sermons = year === '2023' ? sermons2023 : sermons2022;
+
+      sermons.forEach(videoUrl => {
+        const videoId = videoUrl.split('v=')[1];
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        iframe.allowFullscreen = true;
+        sermonVideosContainer.appendChild(iframe);
+      });
+    }
+
+    function showGallery(year) {
+      // You can fetch and add the gallery images dynamically based on the selected year
+      // For now, let's assume you have an array of image URLs for each year
+
+      const gallery2023 = [
+        'image1.jpg',
+        'image2.jpg',
+        'image3.jpg'
+      ];
+
+      const gallery2022 = [
+        'image4.jpg',
+        'image5.jpg',
+        'image6.jpg'
+      ];
+
+      const galleryImagesContainer = document.querySelector('.gallery-images');
+      galleryImagesContainer.innerHTML = '';
+
+      const gallery = year === '2023' ? gallery2023 : gallery2022;
+
+      gallery.forEach(imageUrl => {
+        const image = document.createElement('img');
+        image.src = imageUrl;
+        galleryImagesContainer.appendChild(image);
+      });
+    }
+  </script>
+</body>
+</html>
